@@ -19,7 +19,8 @@
 * Dockerfile을 이용해서 docker image 생성
 * 생성된 이미지는 DockerHub혹은 개인 DockerRepository에 저장 관리
 
-##Dockerfile
+## Dockerfile
+
 ##### docker image 설정 파일
 * FROM
     * 어떤 이미지를 기반으로 새로운 이미지를 만들지 명시
@@ -37,6 +38,9 @@
     * CMD에서 설정한 실행파일이 실행될 디렉토리
 * EXPOSE
     * 호스트와 연결할 포트
+    
+## Build
+
     
 
 <hr/>
