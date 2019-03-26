@@ -40,9 +40,25 @@
     * 호스트와 연결할 포트
     
 ## Build
+* --tag 옵션
+    * image이름과 태그 설정 
+* --memory 옵션
+    * memory limit 설정    
 
+## RUN
+* -c 옵션
+    * 호스트 PC의 CPU스케줄링에 컨테이너가 얼마나 많은 부분을 차지할 것인가. default = 1024
+* --name
+    * 컨테이너의 이름
+* -i
+    * interactive
+* -t
+    * tty 사용(터미널 사용)
+* -v
+    * 호스트 PC와 디렉토리 공유
+* -p
+    * 호스트 PC와 포트 공유 80:80(호스트:도커 컨테이너)
     
-
 <hr/>
 [참고](https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html)
      (http://blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=220646382977&parentCategoryNo=7&categoryNo=&viewDate=&isShowPopularPosts=true&from=search) 
