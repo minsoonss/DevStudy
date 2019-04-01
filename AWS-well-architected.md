@@ -104,61 +104,61 @@
                 - 휴먼 에러는 Post-Mortem의 시작점 - 비난의 대상은 아니다
 
 ## 3. 안정성
-- 좁은 의미로 특정 기간 동안 장애가 없는 정도
-- 인프라 또는 서비스 중단으로 복구할 수 있는 시스템에서 부터, 동적으로 컴퓨팅 리소스를 확보하여 요구 사항을 충족
-- 가용성
-    - 서버와 네트워크, 프로그램 등의 정보 시스템이 정상적으로 사용 가능한 정도
+    - 좁은 의미로 특정 기간 동안 장애가 없는 정도
+    - 인프라 또는 서비스 중단으로 복구할 수 있는 시스템에서 부터, 동적으로 컴퓨팅 리소스를 확보하여 요구 사항을 충족
+    - 가용성
+        - 서버와 네트워크, 프로그램 등의 정보 시스템이 정상적으로 사용 가능한 정도
 
-        → 정상 동작 시간 / 총 시간
+            → 정상 동작 시간 / 총 시간
 
-    - 비용 등 비지니스 적인 기준에 의해 선택지가 달라짐 - 무조건 높다고 좋은 것은 아니다
-- 아키텍처 구성
-    - 2 tier
-    - Auto Scaling
-- 안정성 디자인 원칙
-    - 복구 절차 테스트
-    - 문제 발생 시 자동 복구되도록 구성
-    - 시스템의 가용성을 높이기 위해 수평 확장 가능토록 구성
-    - 시스템 용량 예측하지 마라 - 고정값을 주지마라
-    - 변경 관리 자동화
-1. 안정성 정의
-    1. 기본 요건
-        - Best Practices
-            - On-premise 환경에서는 네트웍 및 시스템 자원의 양을 미리 충분하게 준비
-            - AWS 클라우드를 사용하는 경우 각 서비스의 limit을 파악 하고, 조정
-        - 제한 관리
-            - AWS Trusted Advisor
-            - Amazon CloudWatch
-        - 네트워크 토폴로지 계획
-            - VPC
-            - Direct Connect
-            - Gateway
-    2. 변경관리
-        - 수요 변화에 따른 대처
-            - Auto Scaling - AMI 지정으로 EC2 Loading이 빨라진다????
-            - CloudWatch
-            - ELB
-        - 모니터링
-            - S3
-            - EMR
-            - CloudWatch
-        - 변경 관리 수행
-            - CloudFormation
-            - AWS CodePipeline
-            - AWS CodeDeploy
-        - 구성 요소 실패에 대한 내성
-            - AWS SDKs
-            - ELB
-            - Amazon SQS
-    3. 장애 관리
-        - 데이터 내구성
-            - S3
-            - KMS
-            - EBS
-            - RPO RTO 복구 테스트 수행
-        - 복구 계획
-            - Cloud Formation
-            - RPO RTO 정의
+        - 비용 등 비지니스 적인 기준에 의해 선택지가 달라짐 - 무조건 높다고 좋은 것은 아니다
+    - 아키텍처 구성
+        - 2 tier
+        - Auto Scaling
+    - 안정성 디자인 원칙
+        - 복구 절차 테스트
+        - 문제 발생 시 자동 복구되도록 구성
+        - 시스템의 가용성을 높이기 위해 수평 확장 가능토록 구성
+        - 시스템 용량 예측하지 마라 - 고정값을 주지마라
+        - 변경 관리 자동화
+    1. 안정성 정의
+        1. 기본 요건
+            - Best Practices
+                - On-premise 환경에서는 네트웍 및 시스템 자원의 양을 미리 충분하게 준비
+                - AWS 클라우드를 사용하는 경우 각 서비스의 limit을 파악 하고, 조정
+            - 제한 관리
+                - AWS Trusted Advisor
+                - Amazon CloudWatch
+            - 네트워크 토폴로지 계획
+                - VPC
+                - Direct Connect
+                - Gateway
+        2. 변경관리
+            - 수요 변화에 따른 대처
+                - Auto Scaling - AMI 지정으로 EC2 Loading이 빨라진다????
+                - CloudWatch
+                - ELB
+            - 모니터링
+                - S3
+                - EMR
+                - CloudWatch
+            - 변경 관리 수행
+                - CloudFormation
+                - AWS CodePipeline
+                - AWS CodeDeploy
+            - 구성 요소 실패에 대한 내성
+                - AWS SDKs
+                - ELB
+                - Amazon SQS
+        3. 장애 관리
+            - 데이터 내구성
+                - S3
+                - KMS
+                - EBS
+                - RPO RTO 복구 테스트 수행
+            - 복구 계획
+                - Cloud Formation
+                - RPO RTO 정의
 
 ## 4. 성능 효율성
 - 가성비!
