@@ -4,12 +4,13 @@
 static 팩토리 메소드를 이용할 경우 반환되는 객체에 대한 이해가 쉽다.
 
 ex) BigInteger.probablePrime - 소수인 BigInteger를 반환 
-<pre><code>    public static Foo withName(String name) {
+```java    
+    public static Foo withName(String name) {
         Foo foo = new Foo();
         foo.setName(name);
         return foo;
     }
-</code></pre>
+```
 
 ## 장점 2 : 반드시 새로운 객체를 만들 필요가 없다.
 불변(immutable) 클래스(아이템 17)인 경우나 매번 새로운 객체를 만들 필요가 없는 경우에 미리 만들어둔 인스턴스 또는 캐시해둔 인스턴스를 반환할 수 있다. `Boolean.valueOf(boolean)` 메소드는 아예 객체를 생성하지 않는다.
