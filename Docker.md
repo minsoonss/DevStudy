@@ -59,6 +59,8 @@
 * -p
     * 호스트 PC와 포트 공유 80:80(호스트:도커 컨테이너)
     
+### http://pyrasis.com/book/DockerForTheReallyImpatient/Chapter08  배포 관련
 <hr/>
-[참고](https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html)
-     (http://blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=220646382977&parentCategoryNo=7&categoryNo=&viewDate=&isShowPopularPosts=true&from=search) 
+[참고]  
+https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html  
+http://blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=220646382977&parentCategoryNo=7&categoryNo=&viewDate=&isShowPopularPosts=true&from=search 
