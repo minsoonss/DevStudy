@@ -71,7 +71,7 @@ public class UsingKeySet {
         System.out.println(menu.size()); // 1
     }
 }
-``` 
+```
 
 ## 오토박싱
 
@@ -94,4 +94,6 @@ public class AutoBoxingExample {
 }
 ```
 **불필요한 오토박싱을 피하려면 박스 타입 보다는 프리미티브 타입을 사용해야 한다.**
-#그렇다고 객체 만드는 것을 너무 기피하지 마라
+
+**그렇다고 객체 만드는 것을 너무 기피하지 마라**
+
