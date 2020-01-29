@@ -1,6 +1,6 @@
 # @Transactional
 
-Transactional
+#### Transactional
 
 - Transaction 처리 시 필요
 - @Transactional 어노테이션으로 처리
