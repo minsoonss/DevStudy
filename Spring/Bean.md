@@ -80,7 +80,7 @@
     - 필수적인 의존성 주입에 유리
     - 불변성 보장(개발자가 임의로 null이나 다른객체로 바꾸는것이 불가)
     - 순환참조 체크가능
-    - 스프링 프레임워크에 종속적이지 않음(스프링 4.3부터 완전히 분리 - Autowired 생략가능)
+    - 스프링 프레임워크에 종속적이지 않음(스프링 4.3부터 완전히 분리 - Autowired 생략가능 - 생성자가 하나일때만 가능??)
     - 스프링 4.x부터 setter injection이 아닌 constructor injection 권장
   
   **Constructor Injection이 선호되는 이유**
