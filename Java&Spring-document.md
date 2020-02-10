@@ -98,4 +98,5 @@ Java 와 Spring에 관련된 용어 및 개념을 생각나는대로 정리하�
 
 - @ConfigurationProperties VS @Value
 
-  
+  <img src="image-20200210141516690.png" alt="image-20200210141516690" style="zoom:150%;" />
+
