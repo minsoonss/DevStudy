@@ -100,3 +100,15 @@ Java 와 Spring에 관련된 용어 및 개념을 생각나는대로 정리하�
 
   <img src="image-20200210141516690.png" alt="image-20200210141516690" style="zoom:150%;" />
 
+- Logging
+  - SpringBoot 는 Commons Logging을 사용하지만 logging으로 logback을 사용할 수 있도록 라우팅을 한다
+  - spring.output.ansi.enabled=ALWAYS 하면 로깅 종류별로 색을 다르게 찍어준다
+  - 실행시 debug=true로 찍을경우 특정 클래스에대해 debug로 찍어주는것이지 모든로그에 대해 debug로 찍어주는것은 아니다
+  - logging.file.path, logging.file.name 을 이용하여 로그를 파일에 남길 수 있다
+    - 둘 다 같이 쓰는 경우는 좀 더 구체적인 경로로 저장이 된다.(경로를 명시하는것보단 이름을 명시하는방향)
+  - file은 10MB마다 lotate 된다
+    - logging.file.max-size 로 파일 최대 크기를 지정할 수 있다
+  - logging.file.max-history 로 해당날짜만큼 지나게되면 로그를 삭제해준다
+  - logging.level.PACKAGE-NAME=debug 로 로깅레벨을 지정한다.
+    - ex)logging.level.org.springframework.web=debug
+  - **tip -> 로컬 개발시 hibernate schema generation 확인을 위해 hibernate는 trace로 걸어두기도 한다.**
