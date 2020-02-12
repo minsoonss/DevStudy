@@ -152,6 +152,7 @@
 
   - @JsonComponent 를 이용하면 ObjectMapper에 들어간다
   - @JsonComponent 는 @Component 를 상속
+  - 
 
 
 
