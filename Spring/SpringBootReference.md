@@ -111,6 +111,8 @@
 
 - HttpMessageConverter 종류
 
+  WebMvcConfigurationSupport 에 등록된 default converter
+
   ```java
   class org.springframework.http.converter.ByteArrayHttpMessageConverter 
   class org.springframework.http.converter.StringHttpMessageConverter 
@@ -148,11 +150,48 @@
     class org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter 
     ```
 
+    **Spring boot 의 AutoConfiguration는 ClassPath만 들어가있으면 관련 메세지 컨버터도 추가가 되어야한다. =>Gson의 경우도 dependency를 추가하면 자동으로 관리가 되어야한다.**
+
 - Custom JacksonSerializers
 
   - @JsonComponent 를 이용하면 ObjectMapper에 들어간다
   - @JsonComponent 는 @Component 를 상속
-  - 
+
+- Webjars
+
+  - 프론트엔드 라이브러리를 jar로 패키징
+
+  - maven으로 프론트엔드 라이브러리를 추가할 수 있음
+
+  - https://www.webjars.org/
+
+  - ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                console.log("ready");
+            });
+        </script>
+    </head>
+    <body>
+    <h1>Hello Static</h1>
+    </body>
+    </html>
+    ```
+
+- ContentNegotiation
+
+  - localhost:8080/user.json 과 같은 확장자를 넘기지마라
+  - header에 type을 추가하는 방법
+  - url에 format을 넘기는 방법
+    - localhost:8080/user?format=json
+  - spring.mvc.contentnegotiation.favor-?? 설정을 하면 원하는 방식의 콘텐츠를 협상할 수 있다.
+    - favor를 넘기게 되면 accept header 는 무시된다.
 
 
 
