@@ -193,5 +193,47 @@
   - spring.mvc.contentnegotiation.favor-?? 설정을 하면 원하는 방식의 콘텐츠를 협상할 수 있다.
     - favor를 넘기게 되면 accept header 는 무시된다.
 
+- WebBindingInitializer
+
+  - Spring MVC 에서 WebDataBinding을 할 때 사용
+
+- Template
+
+  - thymeleaf =>localhost:8080/hello?name=minsoon
+
+    - ![image-20200219154952566](image-20200219154952566.png)
+
+    - ```java
+      @Controller
+      public class WebController {
+          /**
+           * String(Return value) ViewName -> ViewResolver -> View
+           * @param model
+           * @param name
+           * @return
+           */
+          @GetMapping("/hello")
+          public String hello(Model model, @RequestParam String name) {
+              model.addAttribute("name", name);
+              return "hello";
+          }
+      }
+      ```
+
+    - ```html
+      <!DOCTYPE html>
+      <html lang="en" xmlns:th="http://www.thymeleaf.org">
+      <head>
+          <meta charset="UTF-8">
+          <title>Title</title>
+      </head>
+      <body>
+      Hello <b th:text="${name}">...</b>
+      </body>
+      </html>
+      ```
+
+- 
+
 
 

@@ -30,7 +30,7 @@
             - 네트워크 보호, 시스템보안, 시스템 레벨
             - VPC
             - Security Group - instance level - stateful - 이미 연결된 것은 끊을 수 없다
-            - NACL(network CLA) - subnet level - stateless - 이미 연결된 것도 끊을 수 있다.
+            - NACL(network ACL) - subnet level - stateless - 이미 연결된 것도 끊을 수 있다.
             - VPC Flog logs - CloudWatch를 이용
             - System Manager - OS패치관리, 운영체제 구성에 도움
         - 데이터 보호
@@ -108,9 +108,9 @@
     - 인프라 또는 서비스 중단으로 복구할 수 있는 시스템에서 부터, 동적으로 컴퓨팅 리소스를 확보하여 요구 사항을 충족
     - 가용성
         - 서버와 네트워크, 프로그램 등의 정보 시스템이 정상적으로 사용 가능한 정도
-
+    
             → 정상 동작 시간 / 총 시간
-
+    
         - 비용 등 비지니스 적인 기준에 의해 선택지가 달라짐 - 무조건 높다고 좋은 것은 아니다
     - 아키텍처 구성
         - 2 tier
@@ -186,7 +186,7 @@
             - 쓰기 부하 - DynamoDB
             - 대용량 - 압축
             - 대량 요청 - SQS(Queuing Service)
-
+    
             WCU RCU ???? 
 
 ## 5. 비용 최적화
@@ -226,4 +226,4 @@
         4. 지속적 최적화
             1. 측정, 모니터링, 그리고 개선
             2. 항상 그린 유지
-   
+
