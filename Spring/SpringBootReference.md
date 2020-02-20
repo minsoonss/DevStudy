@@ -233,7 +233,41 @@
       </html>
       ```
 
-- 
+- CORS
+
+  - Cross-origin resource sharing
+  
+  - @CrossOrigin
+  
+  - 요청의 근원지에 대한 접근 제어
+  
+  - Global CORS 설정을 하기위해서는 WebMvcCofigurer를 Bean으로 설정하면 된다
+  
+  - ```java
+    @GetMapping("/bs")
+    @CrossOrigin
+    public Bangsong bangsong() {
+    	Bangsong bangsong = new Bangsong();
+      bangsong.setStreamer("minsoonss");
+      bangsong.setTitle("spring web cors test");
+      return bangsong;
+    }
+    ```
+  
+  - ```java
+    @Configuration
+    public class MyWebConfig implements WebMvcConfigurer {
+    
+        @Override
+        public void addCorsMappings(CorsRegistry registry) {
+            registry.addMapping("/bs").allowedOrigins("*");
+        }
+    }
+    ```
+  
+- SpringBootTest
+
+  - [SpringBootTest](/SpringBootTest.md)
 
 
 
