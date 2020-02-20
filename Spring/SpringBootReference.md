@@ -83,8 +83,8 @@
   - logback-spring.xml 과 같은 파일로 logging 설정 가능
     - 확장 기능들을 설정가능
     - profile 별로 logging 설정 가능 
-      - <springProfile name="dev"> 
-      - <springProfile name="!dev">
+      - springProfile name="dev"
+      - springProfile name="!dev"
 
 ### Developing Web Applications
 
