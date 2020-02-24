@@ -229,4 +229,149 @@ Spring Boot 에서는 spring-boot-starter-test dependency를 추가
    }
    ```
 
+5. @SpyBean
+
+   원래있는 Bean을 그대로 사용하면서 일부만 변경 -> MockBean은 새로운 객체를 만들지만 SpyBean은 원래객체를 개조하는 것
+
+6. Test AutoConfiguration
+
+   - Bean이 필요할 경우
+
+     ```java
+     package com.minsoonss.springboot;
+     
+     import org.junit.Test;
+     import org.junit.runner.RunWith;
+     import org.springframework.beans.factory.annotation.Autowired;
+     import org.springframework.boot.test.autoconfigure.json.JsonTest;
+     import org.springframework.boot.test.json.JacksonTester;
+     import org.springframework.boot.test.json.JsonContent;
+     import org.springframework.test.context.junit4.SpringRunner;
+     
+     import static org.assertj.core.api.Assertions.assertThat;
+     
+     /**
+      * @author SoonMin Kwon. On 2020.02.24 10:27
+      */
+     @RunWith(SpringRunner.class)
+     @JsonTest
+     public class SampleJsonTest {
+     
+         @Autowired
+         JacksonTester<Sample> sampleJacksonTester;
+         
+         @Autowired
+         JacksonTester<Person> personJacksonTester;
+     
+         @Test
+         public void testJson() throws Exception{
+             Sample sample = new Sample();
+             sample.setName("minsoonss");
+             sample.setNumber(29);
+             JsonContent<Sample> jsonContent = sampleJacksonTester.write(sample);
+             assertThat(jsonContent)
+                     .hasJsonPathStringValue("@.name")
+                     .extractingJsonPathStringValue("@.name").isEqualTo("minsoonss");
+     
+             assertThat(jsonContent)
+                     .hasJsonPathNumberValue("@.number")
+                     .extractingJsonPathNumberValue("@.number").isEqualTo(29);
+         }
+     }
+     ```
+
+   - Bean이 필요없을 경우
+
+     ```java
+     package com.minsoonss.springboot;
+     
+     import com.fasterxml.jackson.databind.ObjectMapper;
+     import org.junit.Before;
+     import org.junit.Test;
+     import org.junit.runner.RunWith;
+     import org.springframework.beans.factory.annotation.Autowired;
+     import org.springframework.boot.test.autoconfigure.json.JsonTest;
+     import org.springframework.boot.test.json.JacksonTester;
+     import org.springframework.boot.test.json.JsonContent;
+     import org.springframework.test.context.junit4.SpringRunner;
+     
+     import static org.assertj.core.api.Assertions.assertThat;
+     
+     /**
+      * @author SoonMin Kwon. On 2020.02.24 10:27
+      */
+     public class SampleJsonTestTwo {
+     
+         JacksonTester<Sample> sampleJacksonTester;
+     
+         @Before
+         public void setUp() {
+             JacksonTester.initFields(this, new ObjectMapper());
+         }
+     
+         @Test
+         public void testJson() throws Exception{
+             Sample sample = new Sample();
+             sample.setName("minsoonss");
+             sample.setNumber(29);
+             JsonContent<Sample> jsonContent = sampleJacksonTester.write(sample);
+             assertThat(jsonContent)
+                     .hasJsonPathStringValue("@.name")
+                     .extractingJsonPathStringValue("@.name").isEqualTo("minsoonss");
+     
+             assertThat(jsonContent)
+                     .hasJsonPathNumberValue("@.number")
+                     .extractingJsonPathNumberValue("@.number").isEqualTo(29);
+         }
+     }
+     ```
+
+7. AutoConfiguration Web Mvc
+
+   @WebMvcTest 를 이용하면 모든 Controller가 Bean으로 등록
+
+   ```java
+   package com.minsoonss.springboot;
    
+   import org.junit.Test;
+   import org.junit.runner.RunWith;
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+   import org.springframework.boot.test.mock.mockito.MockBean;
+   import org.springframework.test.context.junit4.SpringRunner;
+   import org.springframework.test.web.servlet.MockMvc;
+   
+   import static org.mockito.BDDMockito.given;
+   import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+   import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+   
+   /**
+    * @author SoonMin Kwon. On 2020.02.24 11:12
+    */
+   @RunWith(SpringRunner.class)
+   @WebMvcTest
+   public class SampleWebMvcTest {
+   
+       @Autowired
+       private MockMvc mockMvc;
+   
+       @MockBean
+       SimpleService simpleService;
+   
+       @Test
+       public void testFoo() throws Exception{
+           given(simpleService.getName()).willReturn("Minsoonss");
+   
+           mockMvc.perform(get("/"))
+                   .andExpect(handler().handlerType(SimpleController.class))
+                   .andExpect(status().isOk())
+                   .andExpect(content().string("Minsoonss"));
+       }
+   }
+   ```
+
+8. Auto Configuration JPA Test
+
+   @DataJpaTest
+
+   TestEntityManager를 주입받을 수 있다. -> EntityManager의 subset이며 테스트에 용이한 메소드를 제공
