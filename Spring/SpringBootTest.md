@@ -375,3 +375,119 @@ Spring Boot 에서는 spring-boot-starter-test dependency를 추가
    @DataJpaTest
 
    TestEntityManager를 주입받을 수 있다. -> EntityManager의 subset이며 테스트에 용이한 메소드를 제공
+
+9. Auto Configuration REST Clients
+
+   @RestClientTest 를 이용하여 REST Clients 를 테스트 할 수 있다
+
+   ```java
+   /**
+    * @author SoonMin Kwon. On 2020.02.24 14:48
+    */
+   @Service("sampleService")
+   public class SampleServiceImpl implements SampleService {
+   
+       RestTemplate restTemplate;
+   
+       public SampleServiceImpl(RestTemplateBuilder builder) {
+           this.restTemplate = builder.build();
+       }
+   
+       public String getName() {
+           return restTemplate.getForObject("/foo", String.class);
+       }
+   
+       public int getNumber() {
+           return 100;
+       }
+   }
+   ```
+
+   ```java
+   /**
+    * @author SoonMin Kwon. On 2020.02.24 14:51
+    */
+   @RunWith(SpringRunner.class)
+   @RestClientTest(SampleService.class)
+   public class SampleServiceTest {
+   
+       @Autowired
+       SampleService sampleService;
+   
+       @Autowired
+       MockRestServiceServer serviceServer;
+   
+       @Test
+       public void fooTest() {
+           serviceServer.expect(requestTo("/foo"))
+                   .andRespond(withSuccess("minsoonss", MediaType.TEXT_PLAIN));
+   
+           String name = sampleService.getName();
+           Assertions.assertThat(name).isEqualTo("minsoonss");
+       }
+   }
+   ```
+
+10. Auto Configuration SpringRest docs
+
+    Rest call을 기반으로 docs을 만들어준다. Test code를 기반으로 만들어 줌
+
+    ```xml
+    <dependency>
+    	<groupId>org.springframework.restdocs</groupId>
+    	<artifactId>spring-restdocs-mockmvc</artifactId>
+    </dependency>
+    ```
+
+    ```java
+    @RunWith(SpringRunner.class)
+    @WebMvcTest
+    @AutoConfigureRestDocs
+    public class SampleWebMvcTest {
+    
+        @Autowired
+        MockMvc mockMvc;
+    
+        @MockBean
+        SampleService sampleService;
+    
+        @Test
+        public void testFoo() throws Exception{
+            given(sampleService.getName()).willReturn("Minsoonss");
+    
+            mockMvc.perform(get("/foo"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string("Minsoonss"))
+                    .andDo(document("foo"));//추가 돼야 할 부분
+        }
+    }
+    ```
+
+    - 결과
+
+    ![image-20200224152714873](image-20200224152714873.png)
+
+    - Configuration 추가하는 방법
+
+      아래 방법 사용시 테스트의 메소드 이름으로  adoc이 생성된다
+
+      ```java
+      @TestConfiguration
+      static class ResultHandlerConfiguration {
+      
+      	@Bean
+      	public RestDocumentationResultHandler restDocumentationResultHandler() {
+      		return MockMvcRestDocumentation.document("{method-name}");
+      	}
+      }
+      ```
+
+11. UserConfiguration and Slice
+
+    1. UserConfiguration
+       1. 메인클래스에 다른 어노테이션을 추가하여 메인클래스를 더럽히지 마라
+       2. 다른 Configuration 클래스를 만들어서 @Configuration 어노테이션을 추가하라
+       3. 필요시 @Import 어노테이션을 통해 읽어와라
+    2. Slice
+       1. @ComponentScan을 메인클래스에 명시하지마라
+       2. @WebMvcTest 의 경우 웹 테스트를 위한 어노테이션이기 때문에 Controller 만 가져오도록 되어있다. 하지만 메인클래스에 명시할 경우 필요없는 클래스까지 스캐닝하게 된다
