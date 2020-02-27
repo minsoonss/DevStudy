@@ -83,7 +83,12 @@ Embedded database Auto Configuration을 하기 위해서는 `spring-jdbc`가 추
     
     ```
 
-    
 
+### Production Database
 
+Datasource 선호
+
+1. Spring boot 는 HikariCP를 선호 - 성능과 동시성(Concurrency)이 좋음
+2. Tomcat DBCP
+3.  위의 두개가 없으면 Commons DBCP2 사용
 
