@@ -66,7 +66,7 @@
 
 - @ConfigurationProperties VS @Value
 
-  <img src="../image-20200210141516690.png" alt="image-20200210141516690" style="zoom:150%;" />
+  <img src="image-20200210141516690.png" alt="image-20200210141516690" style="zoom:150%;" />
 
 - Logging
   - SpringBoot 는 Commons Logging을 사용하지만 logging으로 logback을 사용할 수 있도록 라우팅을 한다
