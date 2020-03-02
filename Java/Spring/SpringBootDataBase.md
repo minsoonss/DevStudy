@@ -83,12 +83,100 @@ Embedded database Auto Configuration을 하기 위해서는 `spring-jdbc`가 추
     
     ```
 
-
-### Production Database
+## Production Database
 
 Datasource 선호
 
 1. Spring boot 는 HikariCP를 선호 - 성능과 동시성(Concurrency)이 좋음
 2. Tomcat DBCP
 3.  위의 두개가 없으면 Commons DBCP2 사용
+
+## JPA and "Spring Data"
+
+`Java Persistenfce API(JPA)` 는 객체를 RDB와 매핑 
+
+`spring-boot-starter-data-jpa`  POM을 추가하면 빨리 사용가능
+
+추가되는 의존성
+
+	1. Hibernate - JPA 구현체중 가장 인기있는 구현체
+ 	2. Spring Data JPA - JPA repository들을 쉽게 구현할 수 있도록 해준다
+
+3. Spring ORMs - Spring framework의 core ORM 제공
+
+### Entity Classes
+
+Spring Boot는 "Entity Scanning"이 자동으로 Entity 인식
+
+		1. @Entity
+  		2. @Embeddable
+  		3. @MappedSuperclass
+
+```properties
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:h2:file:./test
+    username: sa
+```
+
+```java
+@Entity
+public class Person {
+
+    @Id @GeneratedValue
+    private Long id;
+
+    private String name;
+
+    private String email;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date joined;
+}
+```
+
+```java
+@Entity
+public class Meeting {
+
+    @Id @GeneratedValue
+    private Long id;
+
+    private String name;
+
+    private String location;
+}
+```
+
+![image-20200302150724818](image-20200302150724818.png)
+
+### SpringData JPA
+
+Spring Data JPA 는 메소드의 이름으로 쿼리를 자동 생성해준다
+
+예를 들어 `CityRespository`라는 인터페이스에 `findAllByState(String state)` 를 선언하면 모든 도시를 찾는 쿼리를 만들어준다. 그리고 보다 복잡한 쿼리는 `Query` 어노테이션을 이용하면 된다.
+
+```java
+public interface CityRepository extends JpaRepository<City, Long> {
+  
+  page<City> findAll(Pageable pageable);
+  
+  City findByNameAndCountryAllIgnoringCase(String name, String country);
+}
+```
+
+#### JPA Database를 자동으로 생성하고 지우기
+
+```java
+spring.jpa.hibernate.ddl.auto=create-drop
+```
+
+#### jooQ
+
+Type safe 하게 쿼리를 만들어준다
+
+다만 유료 DB를 쓰는경우 유료다 ex) 오라클
 
