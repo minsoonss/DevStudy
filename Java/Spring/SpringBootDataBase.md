@@ -108,9 +108,10 @@ Datasource 선호
 
 Spring Boot는 "Entity Scanning"이 자동으로 Entity 인식
 
-		1. @Entity
-  		2. @Embeddable
-  		3. @MappedSuperclass
+1. @Entity
+
+     		2. @Embeddable
+     		3. @MappedSuperclass
 
 ```properties
 spring:
