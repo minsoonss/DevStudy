@@ -31,7 +31,7 @@ Auto Configuration 지원
 
 Embedded database Auto Configuration을 하기 위해서는 `spring-jdbc`가 추가되어야한다
 
-- `spring-boot-starter-data-jpa` 에서 같이 들어오게 됨
+- `spring-boot-starter-data-jpa` 에서 같이 들어오게 됨
 
   - Dependecy
 
