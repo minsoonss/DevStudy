@@ -1,4 +1,4 @@
-# 면접준비
+# Job Interview
 
 ### Java & Spring 지식정리
 
