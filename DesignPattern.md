@@ -62,7 +62,7 @@
 
 1. 어댑터
 
-   Wrapper 패턴. 한 겹 싸서 재사용([effectiveJava18 참고](/DevStudy\Java\EffectiveJavaStudy\effectiveJava18.md))
+   Wrapper 패턴. 한 겹 싸서 재사용([effectiveJava18 참고](Java/EffectiveJavaStudy/effectiveJava18.md))
 
    서로 일치하지 않는 인터페이스를 갖는 클래스들을 함께 동작시킴
 
