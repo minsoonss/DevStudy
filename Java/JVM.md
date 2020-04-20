@@ -33,9 +33,36 @@ Old generation - 생긴지 오래된 객체를 저장
 
 #### Serial GC
 
+Full GC에 Mark&compact 알고리즘을 사용하는 방법
+
 #### Parallel GC
+
+Serial GC는 하나의 Thread에서 이루어짐
+
+Parallel GC에서는 Multi Thread로 가능하기때문에 속도가 훨씬 빨라짐
 
 #### CMS GC
 
+Application 전체가 멈춰지는 시간을 줄이기 위해
+
+일부는 Application이 돌아가는 동안 수행하고, 최소한의 작업만 Application이 멈추지 않았을때 수행
+
+Mark&Compact 작업을 안하는게 단점인듯하다
+
+JDK 9 부터 지원되지 않는다.
+
 #### G1 GC
 
+**힙 메모리를 N개의 영역으로 나눈다는 점**이 CMS와의 가장 큰 차이점 - 즉 큰 영역을 한 번에 썼다 지웠다 할것이냐? 일부 영역을 여러번 썼다 지웠다 할것이냐?
+
+Mark & Compact 를 수행함으로 연속된 메모리 할당을 하는데 효율적
+
+
+
+#### Full GC시간을 줄이기 위해서는 어떤 일을 해야하는가??
+
+최대한 multi thread로 작동
+
+어플리케이션이 작동되는 도중에 하나의 쓰레드를 사용하여서 일부 GC를 진행
+
+메모리를 분할하여 비교적 삭제 시간을 줄임
