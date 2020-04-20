@@ -26,10 +26,10 @@ Old generation - 생긴지 오래된 객체를 저장
 
 #### GC 종류
 
-1. [Serial GC](Serial-GC)
-2. [Parallel GC](Parallel-GC)
-3. [CMS GC](CMS-GC)
-4. [G1 GC](G1-GC)
+1. [Serial GC](#Serial-GC)
+2. [Parallel GC](#Parallel-GC)
+3. [CMS GC](#CMS-GC)
+4. [G1 GC](#G1-GC)
 
 #### Serial GC
 
